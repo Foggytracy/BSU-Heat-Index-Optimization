@@ -115,7 +115,7 @@ green2 = [0.36, 0.60, 0.13];
 % FIGURE 1: Seasonal Average HI by Calendar Month
 
 figure(1);
-set(gcf, 'Position', [100, 600, 750, 420], 'Name', 'Fig 1 - Numerical Approximations');
+set(gcf, 'Position', [100, 600, 750, 420], 'Name', 'Numerical Approximations');
 
 bar_colors = zeros(12, 3);
 for m = 1:12
@@ -160,7 +160,7 @@ legend([h1 h2], {'Cooler (avg < 35°C)', 'Peak heat (avg ≥ 35°C)'}, ...
 % FIGURE 2a: 24-Month Forecast with Optimal Window
 
 figure(2);
-set(gcf, 'Position', [100, 150, 900, 420], 'Name', 'Fig 2a - Model Behavior: Forecast');
+set(gcf, 'Position', [100, 150, 900, 420], 'Name', ' Model Behavior: Forecast');
 
 bar_colors2 = repmat(teal, numForecast, 1);
 for i = best_start:best_end
@@ -181,7 +181,7 @@ xticklabels(forecast_labels);
 xtickangle(45);
 ylabel('Heat Index (°C)', 'FontSize', 11);
 xlabel('Month', 'FontSize', 11);
-title('Figure 2a. 24-month HI forecast with optimal academic window highlighted', ...
+title('Figure 2. 24-month HI forecast with optimal academic window highlighted', ...
     'FontSize', 12, 'FontWeight', 'bold');
 ylim([27 39]);
 grid on; box off;
@@ -191,10 +191,10 @@ h4 = patch(NaN, NaN, red,  'EdgeColor','none');
 legend([h3 h4], {'Forecasted HI', 'Optimal window: Jul 2026 – Apr 2027'}, ...
     'Location', 'southwest', 'FontSize', 9);
 
-% FIGURE 2b: Sliding Window Cumulative HI
+% FIGURE 3: Sliding Window Cumulative HI
 
 figure(3);
-set(gcf, 'Position', [860, 600, 700, 380], 'Name', 'Fig 2b - Model Behavior: Windows');
+set(gcf, 'Position', [860, 600, 700, 380], 'Name', ' Model Behavior: Windows');
 
 bar_colors3 = repmat(amber, num_windows, 1);
 bar_colors3(best_start,:) = red;
@@ -207,7 +207,7 @@ xticks(1:num_windows);
 xticklabels(window_labels);
 ylabel('Cumulative Heat Index (°C)', 'FontSize', 11);
 xlabel('Window', 'FontSize', 11);
-title('Figure 2b. Cumulative HI for all 15 sliding windows', ...
+title('Figure 3. Cumulative HI for all 15 sliding windows', ...
     'FontSize', 12, 'FontWeight', 'bold');
 ylim([332 348]);
 grid on; box off;
@@ -222,10 +222,10 @@ h6 = patch(NaN, NaN, red,   'EdgeColor','none');
 legend([h5 h6], {'Candidate windows', 'Optimal: W4 (Jul 2026 – Apr 2027)'}, ...
     'Location', 'north', 'FontSize', 9);
 
-% FIGURE 3a: Mean Absolute Error per Calendar Month
+% FIGURE 4: Mean Absolute Error per Calendar Month
 
 figure(4);
-set(gcf, 'Position', [100, 100, 500, 360], 'Name', 'Fig 3a - Error Trends: MAE');
+set(gcf, 'Position', [100, 100, 500, 360], 'Name', 'Error Trends: MAE');
 
 b4 = bar(1:12, mae_per_month, 'FaceColor', purple, 'EdgeColor', 'none');
 
@@ -233,7 +233,7 @@ xticks(1:12);
 xticklabels(month_labels);
 ylabel('Mean Absolute Error (°C)', 'FontSize', 11);
 xlabel('Month', 'FontSize', 11);
-title('Figure 3a. Mean absolute error per calendar month', ...
+title('Figure 4. Mean absolute error per calendar month', ...
     'FontSize', 12, 'FontWeight', 'bold');
 ylim([0 1.4]);
 grid on; box off;
@@ -243,10 +243,10 @@ for m = 1:12
         'HorizontalAlignment', 'center', 'FontSize', 7.5, 'Color', [0.3 0.3 0.3]);
 end
 
-% FIGURE 3b: Historical HI vs. Seasonal Average Forecast
+% FIGURE 5: Historical HI vs. Seasonal Average Forecast
 
 figure(5);
-set(gcf, 'Position', [620, 100, 700, 360], 'Name', 'Fig 3b - Error Trends: Fit vs Actual');
+set(gcf, 'Position', [620, 100, 700, 360], 'Name', 'Error Trends: Fit vs Actual');
 
 x_idx = 1:39;
 plot(x_idx, seasonal_fit, '-o', 'Color', teal, 'LineWidth', 2, ...
@@ -261,15 +261,15 @@ xticklabels(tick_labels);
 xtickangle(45);
 ylabel('Heat Index (°C)', 'FontSize', 11);
 xlabel('Month', 'FontSize', 11);
-title('Figure 3b. Actual historical HI vs. seasonal average forecast (Jan 2023 – Mar 2026)', ...
+title('Figure 5. Actual historical HI vs. seasonal average forecast (Jan 2023 – Mar 2026)', ...
     'FontSize', 12, 'FontWeight', 'bold');
 ylim([27 39]);
 legend('Location', 'southwest', 'FontSize', 9);
 grid on; box off;
 
-% FIGURE 3c: Residual Errors Across 39 Months
+% FIGURE 6: Residual Errors Across 39 Months
 
-set(gcf, 'Position', [100, 100, 900, 360], 'Name', 'Fig 3c - Error Trends: Residuals');
+set(gcf, 'Position', [100, 100, 900, 360], 'Name', 'Error Trends: Residuals');
 
 pos_res = residuals; pos_res(residuals < 0) = 0;
 neg_res = residuals; neg_res(residuals >= 0) = 0;
@@ -286,15 +286,15 @@ xticklabels(tick_labels);
 xtickangle(45);
 ylabel('Residual (°C)', 'FontSize', 11);
 xlabel('Month', 'FontSize', 11);
-title('Figure 3c. Residual errors across all 39 historical months', ...
+title('Figure 6. Residual errors across all 39 historical months', ...
     'FontSize', 12, 'FontWeight', 'bold');
 legend('Location', 'northwest', 'FontSize', 9);
 grid on; box off;
 
-% FIGURE 4a: Running Minimum Convergence
+% FIGURE 7: Running Minimum Convergence
 
 figure(7);
-set(gcf, 'Position', [100, 100, 500, 360], 'Name', 'Fig 4a - Convergence: Running Min');
+set(gcf, 'Position', [100, 100, 500, 360], 'Name', ' Convergence: Running Min');
 
 plot(1:num_windows, running_min, '-o', 'Color', blue, 'LineWidth', 2, ...
     'MarkerSize', 5, 'MarkerFaceColor', blue);
@@ -306,7 +306,7 @@ xticks(1:num_windows);
 xticklabels(window_labels);
 ylabel('Running minimum cumulative HI (°C)', 'FontSize', 11);
 xlabel('Window iteration', 'FontSize', 11);
-title('Figure 4a. Running minimum HI across 15 iterations', ...
+title('Figure 7. Running minimum HI across 15 iterations', ...
     'FontSize', 12, 'FontWeight', 'bold');
 ylim([332 346]);
 grid on; box off;
@@ -316,10 +316,10 @@ h8 = plot(NaN, NaN, 'o',  'Color', red,  'MarkerSize', 9, 'MarkerFaceColor', red
 legend([h7 h8], {'Running minimum', 'Convergence point (W4)'}, ...
     'Location', 'southwest', 'FontSize', 9);
 
-% FIGURE 4b: Improvement Delta per Iteration
+% FIGURE 8: Improvement Delta per Iteration
 
 figure(8);
-set(gcf, 'Position', [620, 100, 500, 360], 'Name', 'Fig 4b - Convergence: Delta');
+set(gcf, 'Position', [620, 100, 500, 360], 'Name', ' Convergence: Delta');
 
 delta_colors = repmat([0.8 0.8 0.78], num_windows, 1);
 for i = 1:num_windows
@@ -336,7 +336,7 @@ xticks(1:num_windows);
 xticklabels(window_labels);
 ylabel('HI reduction vs. previous best (°C)', 'FontSize', 11);
 xlabel('Window iteration', 'FontSize', 11);
-title('Figure 4b. Improvement delta per sliding window iteration', ...
+title('Figure 8. Improvement delta per sliding window iteration', ...
     'FontSize', 12, 'FontWeight', 'bold');
 grid on; box off;
 

@@ -10,6 +10,7 @@ HI_historical = [
     29.1094, 30.4059, 29.7921                                    % 2026 Jan-Mar
 ];
 
+% Generate month numbers for the 39 months of data
 month_nums = [1:12, 1:12, 1:12, 1:3]; 
 
 % STEP 1: SEASONAL AVERAGES (Numerical Approximations)
@@ -149,9 +150,6 @@ for m = 1:12
         'HorizontalAlignment', 'center', 'FontSize', 8, 'Color', [0.3 0.3 0.3]);
 end
 
-legend({'Cooler months (avg < 35°C)', 'Peak heat months (avg ≥ 35°C)'}, ...
-    'Location', 'southwest', 'FontSize', 9);
-
 h1 = patch(NaN, NaN, blue, 'EdgeColor','none');
 h2 = patch(NaN, NaN, red,  'EdgeColor','none');
 legend([h1 h2], {'Cooler (avg < 35°C)', 'Peak heat (avg ≥ 35°C)'}, ...
@@ -246,7 +244,7 @@ end
 % FIGURE 5: Historical HI vs. Seasonal Average Forecast
 
 figure(5);
-set(gcf, 'Position', [620, 100, 700, 360], 'Name', 'Error Trends: Fit vs Actual');
+set(gcf, 'Position', [620, 500, 700, 360], 'Name', 'Error Trends: Fit vs Actual');
 
 x_idx = 1:39;
 plot(x_idx, seasonal_fit, '-o', 'Color', teal, 'LineWidth', 2, ...
@@ -269,7 +267,8 @@ grid on; box off;
 
 % FIGURE 6: Residual Errors Across 39 Months
 
-set(gcf, 'Position', [100, 100, 900, 360], 'Name', 'Error Trends: Residuals');
+figure(6); % Re-added this missing line
+set(gcf, 'Position', [620, 100, 700, 360], 'Name', 'Error Trends: Residuals');
 
 pos_res = residuals; pos_res(residuals < 0) = 0;
 neg_res = residuals; neg_res(residuals >= 0) = 0;
@@ -319,7 +318,7 @@ legend([h7 h8], {'Running minimum', 'Convergence point (W4)'}, ...
 % FIGURE 8: Improvement Delta per Iteration
 
 figure(8);
-set(gcf, 'Position', [620, 100, 500, 360], 'Name', ' Convergence: Delta');
+set(gcf, 'Position', [1130, 100, 500, 360], 'Name', ' Convergence: Delta');
 
 delta_colors = repmat([0.8 0.8 0.78], num_windows, 1);
 for i = 1:num_windows
